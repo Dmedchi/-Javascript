@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Shop</title>
+            <link rel="stylesheet" href="css/normalize.css">
+            <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <div class="basket">
+                    <form action="#" method="post" class="search-form" @submit.prevent="filter">
+                        <input type="text" class="search-field" v-model="userSearch">
+                        <button class="btn-search" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="btn-cart" type="button" @click="show = !show">Корзина</button>
+                    <div class="basket-list" v-show="show">
+                        <p v-if="!productsBasket.length">Корзина пустая.</p>
+                        <div class="product-in-basket" v-for="el of productsBasket" :key="el.id_product">
+                            <img :src="imgBasket" :alt="el.product_name">
+                            <div class="block-name">
+                                <p>{{el.product_name}}</p>
+                                <p :class="quantity">Quantity: {{el.quantity}}</p>
+                                <p class="single-price">${{el.price}}</p>
+                            </div>
+                            <div class="block-price-btn">
+                                <p :class="sum-products">${{el.quantity * el.price}}</p>
+                                <button class="del-btn" @click="delProduct(el)">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="products">
+                    <div class="product-item" v-for="el of products" :key="el.id_product">
+                        <img :src="imgCatalog" :alt="el.product_name">
+                        <h3>{{el.product_name}}</h3>
+                        <p>{{el.price}}</p>
+                        <button class="buy-btn" @click="addProduct(el)">Купить</button>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+        <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script defer src="js/main.js"></script>
+    </body>
+</html>
+
