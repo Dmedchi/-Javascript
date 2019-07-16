@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat');
+        body {
+            background: #BE93C5;
+            background: -webkit-linear-gradient(to left, #BE93C5 , #7BC6CC);
+            background: linear-gradient(to left, #BE93C5 , #7BC6CC);
+            color: #555;
+            line-height: 1.5;
+            font-weight: 400;
+            font-size: 100%;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        form {
+            background: #fff;
+            padding: 50px 40px;
+            max-width: 400px;
+            margin: 100px auto 0;
+            border-radius:5px;
+        }
+        div {
+            margin: 0 0 25px 0;
+            position: relative;
+        }
+        input {
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 5px 10px;
+            margin: 10px 0;
+            border:0;
+            border-bottom: 1px solid #29bbf2;
+            outline: none
+        }
+        input:focus {
+            outline: none;
+        }
+        form button {
+            background: #29bbf2;
+            font-family: 'Montserrat', sans-serif;
+            border: 0;
+            color: #fff;
+            width: 100%;
+            display: block;
+            font-size: 20px;
+            line-height: 1.8;
+            margin: 60px 0 0;
+            outline: none;
+            padding: 15px 0;
+            border-radius:50px;
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+        .invalid {
+            border:0;
+            border-bottom: 1px solid red;
+        }
+        .valid {
+            border:0;
+            border-bottom: 1px solid #29bbf2;
+        }
+    </style>
+    <script src="js.js"></script>
+    <link rel="stylesheet" href="project/css/style.css">
+</head>
+<body>
+    <form action="#" method="post" class="some" id="form">
+		<div>
+            <label>
+                <input type="text" name="name" id="name" placeholder="Name">
+            </label>
+		</div>
+		<div>
+            <label>
+                <input type="tel" name="phone" id="phone" placeholder="Phone">
+            </label>
+		</div>
+		<div>
+            <label>
+                <input type="email" name="email" id="email" placeholder="Email">
+            </label>
+		</div>
+		<button id="val-btn">Submit</button>
+	</form>
+    <script src="js.js"></script>
+    <script>
+        window.onload = () => {
+            document.getElementById('form').addEventListener('submit', e => {
+                let valid = new Validator('#form');
+                if (!valid.valid) {
+                    e.preventDefault();
+                }
+            })
+        }
+    </script>
+</body>
+</html>
